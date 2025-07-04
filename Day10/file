@@ -1,0 +1,13 @@
+admin
+fs678dde
+mongodb+srv://admin:<db_password>@cluster0.fdobm.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
+recode : hero
+collection : heros
+dbname : onlineDB
+
+id : 674c927e6cf1c97fb8430ccb
+title : "ironMan"
+fname : "spider"
+lname : "man"
+email : "s@gmail.com"
+city : "delhi"

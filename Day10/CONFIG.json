@@ -1,0 +1,10 @@
+{
+  "PORT": 5500,
+  "HOST": "localhost",
+  "admin": "admin",
+  "userName": "fdobm",
+  "userPassword": "fs678dde",
+  "databaseName": "onlineDB",
+  "collectionName": "heros",
+  "recode": "hero"
+}
