@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="./lib/jquery-3.7.1.js"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <script>
+      // add
+      function addnewHero() {
+        let utile = $("#utitle").val();
+        let ufirst = $("#fname").val();
+        let ulast = $("#lname").val();
+        let uemail = $("#uemail").val();
+        let ucity = $("#ucity").val();
+        if (utile && fname && lname && uemail && ucity) {
+          let nhero = {
+            title: utile,
+            fname: ufirst,
+            lname: ulast,
+            email: uemail,
+            city: ucity,
+          };
+          $.ajax({
+            url: "/data",
+            method: "post",
+            data: JSON.stringify(nhero),
+            dataType: "json",
+            contentType: "application/json",
+            success: function (res) {
+              console.log(res);
+              $("#utitle").val("");
+              $("#fname").val("");
+              $("#lname").val("");
+              $("#uemail").val("");
+              $("#ucity").val("");
+              render();
+            },
+            error: function (err) {
+              console.log(err);
+            },
+          });
+        } else {
+          alert("fill all the datails");
+        }
+      }
+      // get
+      function render() {
+        $("#InfotBody").empty();
+        $(function () {
+          $.ajax({
+            url: "/data",
+            method: "get",
+            success: function (res) {
+              console.log(res);
+
+              res.forEach((val, idx) => {
+                $("#InfotBody").append(`
+                    <tr class="text-center scope=row">
+                      <td>${idx++}</td>
+                      <td>${val.title}</td>
+                      <td>${val.fname}</td>
+                      <td>${val.lname}</td>
+                      <td>${val.email}</td>
+                      <td>${val.city}</td>
+                      <td>
+                        <button data-editID = ${
+                          val._id
+                        } class="btn btn-warning">Edit</button>
+                      </td>
+                      <td>
+                        <button data-deleteid = ${
+                          val._id
+                        } class="btn btn-danger">Edit</button>
+                      </td>
+                    </tr>
+
+          `);
+              });
+            },
+            error: (err) => {
+              console.log(err);
+            },
+          });
+        });
+      }
+      // delete
+      function deleteHero(evt) {
+        $.ajax({
+          url: "/delete/" + evt.target.getAttribute("data-deleteid"),
+          method: "delete",
+          success: function (res) {
+            console.log(res);
+            render();
+          },
+          error: function (err) {
+            console.log("Error", err);
+          },
+        });
+      }
+      // update
+      function editHero(evt) {
+        $.ajax({
+          url: "/update/" + evt.target.getAttribute("data-editid"),
+          method: "get",
+          success: function (res) {
+            console.log(res);
+            $("#ue_hid").val(res._id);
+            $("#e_htitle").val(res.title);
+            $("#e_hfname").val(res.fname);
+            $("#e_hlname").val(res.lname);
+            $("#e_hemail").val(res.uemail);
+            $("#e_hcity").val(res.ucity);
+            $(".updatenewhero").show(500);
+            $(".addnewhero").hide(500);
+
+            render();
+          },
+          error: function (err) {
+            console.log("Error", err);
+          },
+        });
+      }
+      function UpdateHero() {
+        // alert("update");
+        let uid = $("#e_hid").val();
+        let utile = $("#e_htitle").val();
+        let ufirst = $("#e_hfname").val();
+        let ulast = $("#e_hlname").val();
+        let uemail = $("#e_hemail").val();
+        let ucity = $("#e_hcity").val();
+        let nhero = {
+          title: utile,
+          fname: ufirst,
+          lname: ulast,
+          email: uemail,
+          city: ucity,
+        };
+        $.ajax({
+          url: "/update/" + hid,
+          method: "post",
+          data: JSON.stringify(nhero),
+          dataType: "json",
+          contentType: "application/json",
+          success: function (res) {
+            console.log(res);
+            $("#e_hid").val("");
+            $("#e_htitle").val("");
+            $("#e_hfname").val("");
+            $("#e_hlname").val("");
+            $("#e_hemail").val("");
+            $("#e_hcity").val("");
+            $(".addnewhero").show(500);
+            $(".updatenewhero").hide(500);
+            render();
+          },
+          error: function (err) {
+            console.log(err);
+          },
+        });
+      }
+
+      // all curd operation
+      $(function () {
+        render();
+        $("#addbtn").on("click", addnewHero);
+        $("#InfotBody").on("click", "button[data-deleteid]", deleteHero);
+        $("#InfotBody").on("click", "button[data-editid]", editHero);
+        $("#updatebtn").on("click", UpdateHero);
+        $(".updatenewhero").hide();
+      });
+    </script>
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="text-center mt-2">Crude with of Express</h1>
+
+      <!-- add the data to the database -->
+      <div class="addnewhero">
+        <div class="mb-3">
+          <label for="utitle" class="form-label">Titile :</label>
+          <input
+            type="text"
+            class="form-control"
+            id="utitle"
+            placeholder="nameexample"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="fname" class="form-label">FirstName :</label>
+          <input
+            type="text"
+            class="form-control"
+            id="fname"
+            placeholder="firstname"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="lname" class="form-label">LastName :</label>
+          <input
+            type="text"
+            class="form-control"
+            id="lname"
+            placeholder="lastname"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="uemail" class="form-label">Email :</label>
+          <input
+            type="email"
+            class="form-control"
+            id="uemail"
+            placeholder="name@example.com"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="ucity" class="form-label">City :</label>
+          <input
+            type="text"
+            class="form-control"
+            id="ucity"
+            placeholder="city"
+          />
+        </div>
+        <div class="col-auto">
+          <button class="btn btn-primary mb-3" id="addbtn">Add New</button>
+        </div>
+      </div>
+      <!-- updata the data from database -->
+      <div class="updatenewhero">
+        <div class="mb-3">
+          <label for="e_htitle" class="form-label">Titile :</label>
+          <input
+            type="text"
+            class="form-control"
+            id="e_htitle"
+            placeholder="nameexample"
+          />
+          <input type="hidden" id="e_hid" />
+        </div>
+        <div class="mb-3">
+          <label for="e_hfname" class="form-label">FirstName :</label>
+          <input
+            type="text"
+            class="form-control"
+            id="e_hfname"
+            placeholder="firstname"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="e_hlname" class="form-label">LastName :</label>
+          <input
+            type="text"
+            class="form-control"
+            id="e_hlname"
+            placeholder="lastname"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="e_hemail" class="form-label">Email :</label>
+          <input
+            type="email"
+            class="form-control"
+            id="e_hemail"
+            placeholder="name@example.com"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="e_hcity" class="form-label">City :</label>
+          <input
+            type="text"
+            class="form-control"
+            id="e_hcity"
+            placeholder="city"
+          />
+        </div>
+        <div class="col-auto">
+          <button id="updatebtn" class="btn btn-primary mb-3">
+            Update the Info
+          </button>
+        </div>
+      </div>
+      <!-- display the in table from database -->
+      <table class="table text-center">
+        <thead>
+          <tr>
+            <th scope="col">sl#</th>
+            <th scope="col">Title</th>
+            <th scope="col">FirstName</th>
+            <th scope="col">LastName</th>
+            <th scope="col">Email</th>
+            <th scope="col">City</th>
+            <th scope="col">Edit</th>
+            <th scope="col">Delete</th>
+          </tr>
+        </thead>
+        <tbody id="InfotBody"></tbody>
+      </table>
+    </div>
+  </body>
+</html>
