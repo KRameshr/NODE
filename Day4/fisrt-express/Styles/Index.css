@@ -1,0 +1,19 @@
+body {
+  font: 1em sans-serif;
+  text-align: center;
+}
+
+p {
+  width: 500px;
+  height: 200px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  overflow: auto;
+  position: relative;
+  justify-content: center;
+  display: flex;
+  left: 500px;
+}
+img {
+  width: 200px;
+  height: 200px;
+}
