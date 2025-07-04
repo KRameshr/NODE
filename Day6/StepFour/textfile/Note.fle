@@ -1,0 +1,17 @@
+step 1 
+     allow the user to register
+step 2
+    allow the user to login
+step 3 
+    validate the user's credentails to give him access to pages that are restricted
+    passportjs.org
+step 4
+  encryption of user passwords
+step 5
+   cookies and sessions to remeber the user who   is alrady logged in
+
+
+   
+
+   creating cookies
+   by client-sessions
