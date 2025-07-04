@@ -1,0 +1,18 @@
+extends template 
+
+block vars 
+    - var title = 'Profile Page'
+    - var company = "Intellipat"
+
+block body
+    p(class="h-3") Hello, my name is #{info.firstname}.#{info.lastname} ,You can reach me at #{info.email}. I’m originally from Indian city. I’m passionate about technology and inovation technology, always eager to learn, and excited to connect with people from different backgrounds. i love write an article 
+    br
+    h3 The Story of AI: From Imagination to Innovation 
+    p Once upon a time, the idea of machines that could think like humans lived only in the pages of science fiction. Writers imagined robots that could talk, solve problems, and even feel emotions. But what was once a dream slowly began to take shape in the real world.
+    p In the 1950s, the term Artificial Intelligence (AI) was born. Scientists like Alan Turing and John McCarthy laid the foundations for what would become one of the most powerful technologies in human history. In the beginning, AI could only solve simple math problems and play games like chess. But even then, people saw its potential.
+    p As computers became faster and data grew bigger, AI began to evolve. In the 21st century, it started learning—not just following instructions, but actually learning from data. This is known as machine learning. AI systems could now recognize faces, translate languages, recommend movies, and even drive cars.Companies and countries started investing in AI, using it in education, healthcare, finance, and space exploration. In classrooms, AI tutors help students learn at their own pace. In hospitals, AI helps doctors diagnose diseases faster and more accurately. Even farmers use AI to grow crops more efficiently.But with great power came great responsibility. People began to ask important questions: Can AI be trusted? Will it take jobs? Can it be fair to everyone? That’s why today, researchers work not just on building smarter AI—but also ethical AI that respects privacy, avoids bias, and supports humanity.
+    p The story of AI is still being written. Every day, it learns more, helps more, and grows closer to becoming a true partner in our lives. From imagination to innovation, AI has come a long way—and its future is as exciting as its past.
+    br 
+    a(class="d-inline p-2 bg-primary text-white text-decoration-none" href="/logout") logout
+    a(class=" d-inline p-2 bg-primary text-white text-decoration-none m-2" href="/") Home
+    a(class=" d-inline p-2 bg-primary text-white text-decoration-none " href="/dashbord") Dashbord page

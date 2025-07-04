@@ -1,0 +1,26 @@
+extends template 
+
+block vars 
+    - var title = 'dashbord Page'
+    - var company = "Intellipat"
+
+block body
+    table.table
+        thead
+            tr
+            th(scope='col') #
+            th(scope='col') First
+            th(scope='col') Last
+            th(scope='col') Email
+        tbody
+            tr
+            th(scope='row') 1
+            td #{info.firstname}
+            td #{info.lastname} 
+            td #{info.email} 
+    a(class="d-inline p-2 bg-dark text-white text-decoration-none"  href="/logout") logout
+    a(class=" d-inline p-2 bg-primary text-white text-decoration-none m-2" href="/") Home
+    a(class=" d-inline p-2 bg-primary text-white text-decoration-none " href="/profile") Profile page
+   
+
+    

@@ -1,0 +1,20 @@
+extends template 
+
+block vars 
+    - var title = 'Login Page'
+    - var company = "Intellipat"
+
+block body 
+    if error 
+        p #{error}
+    form(acton="#", method="post")
+        div(class='mb-3 ')
+            label(for="email" class='form-label') Email 
+            input(type="email" class='form-control' name='email' id='email')  
+        div(class='mb-3')
+            label(for="password" class='form-label') PassWord 
+            input(type="password" class='form-control' name='password' id='password')     
+        div(class='mb-3')
+            input(type="submit" class="btn btn-primary" value='Login')   
+            a(class="btn d-inline p-2 bg-primary text-white text-decoration-none m-2" href="/") Home
+            a(class="btn d-inline p-2 bg-dark text-white text-decoration-none " href="/register") New User Register Here

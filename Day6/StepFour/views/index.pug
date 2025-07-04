@@ -1,0 +1,22 @@
+extends template 
+
+block vars 
+    - var title = 'Home Page'
+    - var company = "Intellipat"
+
+block body
+    
+    h3 Privacy and Policy 
+    p we are committed to protecting the privacy of our users. Here's a brief overview of our key privacy and policy principles:
+    ul 
+        li Data Collection: We collect minimal personal data such as name, email, and learning preferences to enhance user experience.
+        li Usage of Information: Personal information is used only for account management, learning personalization, and platform improvement.
+        li Data Security: We implement robust encryption and security measures to protect user data from unauthorized access.
+        li No Selling of Data: We never sell or rent users' personal data to third parties.
+        li Parental Control: For users under 18, we encourage parental oversight and provide tools for monitoring and control.
+        li Cookies: We use cookies to analyze site traffic and improve functionality. Users can control cookie preferences from their browser settings.
+        li User Rights: Users have the right to access, update, or delete their personal data at any time.
+    br
+    a(class="d-inline p-2 bg-primary text-white text-decoration-none " href="/login") Login Here
+    a(class="d-inline p-2 bg-dark text-white text-decoration-none m-2" href="/register") New User Register Here
+    a(class=" d-inline p-2 bg-primary text-white text-decoration-none " href="/profile") Profile page

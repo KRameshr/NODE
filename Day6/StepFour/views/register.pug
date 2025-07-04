@@ -1,0 +1,26 @@
+extends template 
+
+block vars 
+    - var title = 'Register Page'
+    - var company = "Intellipat"
+
+block body 
+    if clienterror
+        div(class="form-text")
+            p ERROR #{clienterror}   
+    form(action="#",method="post")
+        div(class="mb-3 row")
+            label(for="firstname" class="form-label") First Name
+            input(class="form-control" id="firstname" required  name ='firstname' type="text")
+        div(class="mb-3 row")    
+            label(for="lastname" class="form-label") Last Name
+            input(class="form-control" id='lastname' required  name='lastname' type="text" )
+        div(class="mb-3 row")
+            label(for="email" class="form-label") Email address
+            input(class="form-control" id='email' required  name='email' type="email"  placeholder="name@example.com")   
+        div(class="mb-3 row")
+            label(for="password" class="form-label") Password
+            input(class="form-control" id='password' required name='password' type="password" )
+        div(class="mb-3" )
+            input(class="btn btn-primary" type="submit",value='Register')
+            a(class="btn d-inline p-2 bg-primary text-white text-decoration-none m-2" href="/") Home
