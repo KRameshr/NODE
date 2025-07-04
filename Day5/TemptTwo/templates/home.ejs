@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style/index.css" />
+  </head>
+  <body>
+    <h1>WellCom to EJS Template</h1>
+    <h2>form in Ejs</h2>
+    <form action="#" method="post">
+      <label for="Uname">User Name</label>
+      <input name="username" id="Uname" type="text" />
+      <br />
+      <!-- <label for="Upass">User Password</label>
+      <input name="userpass" id="Upass" type="password" />
+      <br /> -->
+      <input type="submit" value="Login" />
+    </form>
+    <ul>
+      <% arbalist.forEach((user) => { %>
+      <li><%- user %></li>
+      <% }); %>
+    </ul>
+  </body>
+</html>

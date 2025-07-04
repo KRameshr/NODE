@@ -1,0 +1,19 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title Document
+        style 
+            include style/index.css
+    body 
+        h1 WELL come to PUG TEMPLATE 
+        h2 Form in PUG 
+        form(action="#" method='post')
+            label(for="uname" id='uname') NEW Hero
+            input(name='username' id="uname" )
+            input(type="submit" value='Add Here')  
+        hr
+        ol
+            each hero in arbalist
+                li #{hero}    
